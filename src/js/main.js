@@ -6,6 +6,8 @@ let cocktailData = [];
 const listSearch = document.querySelector('.js-listElement');
 const inputSearch = document.querySelector('.js-inputSearch');
 const btnSearch = document.querySelector('.js-btnSearch');
+let favorites = [];
+const favoritesList = document.querySelector('.js-listFav');
 
 //CARGA LISTADO DE MARGARITAS POR DEFECTO
 fetch(serverUrl)
@@ -15,14 +17,16 @@ fetch(serverUrl)
             cocktailData = data.drinks.map((drink) => ({
             name: drink.strDrink,
             img: noImgUrl,
+            id: drink.idDrink,
         }));
         render(cocktailData);
         }else{cocktailData = data.drinks.map((drink) => ({
             name: drink.strDrink,
             img: drink.strDrinkThumb,
+            id: drink.idDrink,
         }));
-        render(cocktailData);}
-        
+        render(cocktailData);
+    }    
 });
 
 //RENDERIZADO DEL LISTADO PRINCIPAL DE BEBIDAS
@@ -39,10 +43,13 @@ function render(){
 
         imgElement.setAttribute('src', cocktail.img);
         imgElement.setAttribute('class','img');
+        liElement.setAttribute('class','js-liElement');
+        liElement.setAttribute('id',cocktail.id);
 
         const title = document.createTextNode(cocktail.name);
         titleElement.appendChild(title);
     }
+    addEventClickList(cocktailData);
 };
 
 //FUNCIÓN DE BÚSQUEDA
@@ -55,14 +62,44 @@ function handleclick () {
             cocktailData = data.drinks.map((drink) => ({
             name: drink.strDrink,
             img: noImgUrl,
+            id: drink.idDrink,
         }));
         render(cocktailData);
         }else{cocktailData = data.drinks.map((drink) => ({
             name: drink.strDrink,
             img: drink.strDrinkThumb,
+            id: drink.idDrink,
         }));
         render(cocktailData);}
     });
 }
 
 btnSearch.addEventListener('click', handleclick);
+
+
+//FAVORITOS
+
+function addEventClickList (cocktailData){
+    const liElementList = document.querySelectorAll('.js-liElement');
+    for (const eachLiElement of liElementList){
+        eachLiElement.addEventListener('click', handleClickFavorites);
+}}
+
+
+function handleClickFavorites(event){
+    const idSelected = event.currentTarget.id;
+    event.currentTarget.classList.toggle('favorites');
+    const selectedFavorites = cocktailData.find (cocktail => cocktail.id === idSelected);
+    console.log(selectedFavorites)
+
+    // favorites.push(event.currentTarget);
+
+
+    renderFavorites();
+}
+
+function renderFavorites(){
+    for(const eachFavorite of favorites){
+        favoritesList.appendChild(eachFavorite);
+    }
+}
