@@ -1,16 +1,18 @@
+/* eslint-disable indent */
 'use strict';
 
 const serverUrl = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
 const noImgUrl ='https://via.placeholder.com/200x200/3d1b5b/f3f3f3/?text=cocktail';
-let cocktailData = [];
+const favoritesList = document.querySelector('.js-listFav');
 const listSearch = document.querySelector('.js-listElement');
 const inputSearch = document.querySelector('.js-inputSearch');
 const btnSearch = document.querySelector('.js-btnSearch');
 let favorites = [];
-const favoritesList = document.querySelector('.js-listFav');
+let cocktailData = [];
 
 //CARGA LISTADO DE MARGARITAS POR DEFECTO
 fetch(serverUrl)
+
     .then((response) => response.json())
     .then((data) =>{
         if(data.drinks.strDrinkThumb === ''){
@@ -26,7 +28,12 @@ fetch(serverUrl)
             id: drink.idDrink,
         }));
         render(cocktailData);
-    }    
+            const favoritesLocalStorage = JSON.parse(localStorage.getItem('listFavorites'));
+    if(favoritesLocalStorage.length>0){
+        favorites = favoritesLocalStorage;
+        renderFavoritesItems(favorites);
+    }
+    }
 });
 
 //RENDERIZADO DEL LISTADO PRINCIPAL DE BEBIDAS
@@ -50,10 +57,11 @@ function render(){
         titleElement.appendChild(title);
     }
     addEventClickList(cocktailData);
-};
+}
 
 //FUNCIÓN DE BÚSQUEDA
-function handleclick () {
+function handleclick (event) {
+     event.preventDefault();
     let inputValue = inputSearch.value;
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputValue}`)
         .then((response) => response.json())
@@ -79,7 +87,7 @@ btnSearch.addEventListener('click', handleclick);
 
 //FAVORITOS
 
-function addEventClickList (cocktailData){
+function addEventClickList (){
     const liElementList = document.querySelectorAll('.js-liElement');
     for (const eachLiElement of liElementList){
         eachLiElement.addEventListener('click', handleClickFavorites);
@@ -89,17 +97,52 @@ function addEventClickList (cocktailData){
 function handleClickFavorites(event){
     const idSelected = event.currentTarget.id;
     event.currentTarget.classList.toggle('favorites');
-    const selectedFavorites = cocktailData.find (cocktail => cocktail.id === idSelected);
-    console.log(selectedFavorites)
+    const selectedFavorites = cocktailData.find (cocktail => cocktail.id === idSelected); //busca el id que acabamos de seleccionar en la list de cockteles impresa y nos devuelve el objeto con el mismo id.
+    console.log(selectedFavorites);
+    const indexFav = favorites.findIndex (cocktail => cocktail.id === idSelected);
+    console.log(indexFav);
+    if (indexFav === -1){
+        favorites.push(selectedFavorites);
+    }else{
+        favorites.splice(indexFav,1);
+    }
 
-    // favorites.push(event.currentTarget);
-
-
-    renderFavorites();
+    handleFavorites(favorites);
 }
 
-function renderFavorites(){
-    for(const eachFavorite of favorites){
-        favoritesList.appendChild(eachFavorite);
+
+function handleFavorites(){
+    favoritesList.innerHTML = '';
+    renderFavoritesItems(favorites);
+    localStorage.setItem ('listFavorites', JSON.stringify(favorites));
+    addEventClickFavorites(favorites);
+;
+}
+
+function renderFavoritesItems(){
+    for (const eachfavorite of favorites){
+        const liElement = document.createElement('li');
+        const titleElement = document.createElement('h3');
+        const imgElement = document.createElement('img');
+
+        favoritesList.appendChild(liElement);
+        liElement.appendChild(titleElement);
+        titleElement.appendChild(imgElement);
+
+        imgElement.setAttribute('src', eachfavorite.img);
+        imgElement.setAttribute('class','img');
+        liElement.setAttribute('class','js-listFav');
+        liElement.setAttribute('id', eachfavorite.id);
+
+        const title = document.createTextNode(eachfavorite.name);
+        titleElement.appendChild(title);
     }
 }
+
+//BONUS: BORRAR DE FAVORITOS
+// function addEventClickFavorites(){
+//     const favoriteLi = document.querySelectorAll('.js-listFav');
+//     for (const eachfavoriteItem of favoriteLi){
+//         eachfavoriteItem.addEventListener('click',handleClickRemove());
+//     }
+// }
