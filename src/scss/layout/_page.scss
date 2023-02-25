@@ -20,18 +20,6 @@ html{
     padding-left: 1rem;
     font-size: 1.8rem;
   }
-  &__form__label--btnSearch{
-    width: 9rem;
-    height: 3.5rem;
-    margin-left:2rem;
-    font-size: 1.8rem;
-  }
-  &__form__label--btnReset{
-    width: 9rem;
-    height: 3.5rem;
-    margin-left:2rem;
-    font-size: 1.8rem;
-  }
 }
 
 .img{
@@ -79,7 +67,7 @@ html{
           padding-bottom: 1.2rem;
         }
       &--listElement {
-        float: left;
+        // float: left;
           padding: 2rem 4rem;
           width: fit-content;
           border: 1px solid grey;
@@ -95,7 +83,7 @@ html{
 
 
 .sectionList__title--listElement{
-  float: left;
+  // float: left;
   padding: 2rem 4rem;
   width: fit-content;
   border: 1px solid grey;
