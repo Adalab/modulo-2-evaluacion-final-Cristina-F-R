@@ -11,9 +11,19 @@
 
   <body>
     <div class="page">
-      <header class="page__header">
-        <img src="./assets/images/logo-adalab.png" alt="Adalab">
-        <h1>Otra página del starter kit</h1>
+      <header class="header">
+       
+        <h1 class="header__title">Búscador de cócteles</h1>
+        
+        <form action="#" class="header__form">
+          <label for="search" class="header__form__label">
+            <input type="text" class="header__form__label--input js-inputSearch" placeholder="Escribe aquí tu búsqueda" id="search">
+          </label>
+          <input type="submit" value="Buscar" class="header__form__label--btnSearch js-btnSearch">
+          <button class="header__form__label--btnSearch js-btnReset">Reset</button>
+          
+        </form>
+
       </header>
 
       <main>
@@ -23,12 +33,8 @@
           que te ha traído hasta aquí.
         </p>
       </main>
-      <footer class="page__footer">
-        <small>
-          &copy; Todos los derechos reservados
-          <a class="link__adalab" href="https://adalab.es">Adalab</a>
-
-        </small>
+      <footer class="footer">
+       
       </footer>
 
     </div>
