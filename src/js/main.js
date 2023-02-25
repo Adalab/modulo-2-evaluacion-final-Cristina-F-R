@@ -7,36 +7,41 @@ const favoritesList = document.querySelector('.js-listFav');
 const listSearch = document.querySelector('.js-listElement');
 const inputSearch = document.querySelector('.js-inputSearch');
 const btnSearch = document.querySelector('.js-btnSearch');
+const btnResetFav = document.querySelector('.js-resetFav');
+const btnReset = document.querySelector('.js-btnReset');
 let favorites = [];
 let cocktailData = [];
 
 //CARGA LISTADO DE MARGARITAS POR DEFECTO
-fetch(serverUrl)
+fetchInicio();
 
-    .then((response) => response.json())
-    .then((data) =>{
-        if(data.drinks.strDrinkThumb === ''){
-            cocktailData = data.drinks.map((drink) => ({
-            name: drink.strDrink,
-            img: noImgUrl,
-            id: drink.idDrink,
-        }));
-        render(cocktailData);
-        }else{cocktailData = data.drinks.map((drink) => ({
-            name: drink.strDrink,
-            img: drink.strDrinkThumb,
-            id: drink.idDrink,
-        }));
-        render(cocktailData);
+function fetchInicio(){
+    fetch(serverUrl)
 
-        const favoritesLocalStorage = JSON.parse(localStorage.getItem('listFavorites'));
-        if(favoritesLocalStorage.length>0){
-            favorites = favoritesLocalStorage;
-             renderFavorites(favorites);
-    }
-    }
-});
+        .then((response) => response.json())
+        .then((data) =>{
+            if(data.drinks.strDrinkThumb === ''){
+                cocktailData = data.drinks.map((drink) => ({
+                name: drink.strDrink,
+                img: noImgUrl,
+                id: drink.idDrink,
+            }));
+            render(cocktailData);
+            }else{cocktailData = data.drinks.map((drink) => ({
+                name: drink.strDrink,
+                img: drink.strDrinkThumb,
+                id: drink.idDrink,
+            }));
+            render(cocktailData);
 
+            const favoritesLocalStorage = JSON.parse(localStorage.getItem('listFavorites'));
+            if(favoritesLocalStorage.length>0){
+                favorites = favoritesLocalStorage;
+                renderFavorites(favorites);
+        }
+        }
+    });
+}
 //RENDERIZADO DEL LISTADO PRINCIPAL DE BEBIDAS
 function render(){
     listSearch.innerHTML = '';
@@ -52,7 +57,7 @@ function render(){
 
         imgElement.setAttribute('src', cocktail.img);
         imgElement.setAttribute('class','img');
-        liElement.setAttribute('class','sectionList__title--listElement js-liElement');
+        liElement.setAttribute('class','sectionList__title--listElement noFavorites js-liElement');
         titleElement.setAttribute('class','sectionList__title--titleElement');
         liElement.setAttribute('id',cocktail.id);
 
@@ -88,6 +93,15 @@ function handleclick (event) {
 }
 
 btnSearch.addEventListener('click', handleclick);
+
+//BOTÓN RESET BÚSCADOR:
+btnReset.addEventListener('click', handleclickReset);
+
+function handleclickReset(event){
+    event.preventDefault();
+    inputSearch.value = '';
+    fetchInicio();
+}
 
 
 //FAVORITOS
@@ -129,7 +143,8 @@ function renderFavorites(){
 
         imgElement.setAttribute('src', eachfavorite.img);
         imgElement.setAttribute('class','img');
-        liElement.setAttribute('class','js-listFav');
+        liElement.setAttribute('class','sectionFav__title--listElement js-listFav');
+        titleElement.setAttribute('class','sectionList__title--titleElement');
         liElement.setAttribute('id', eachfavorite.id);
         removeElement.setAttribute('class','js-remove');
         removeElement.setAttribute('id',eachfavorite.id);
@@ -151,7 +166,7 @@ function isItFavorite () {
         const isFavorite = favorites.find (favorite => favorite.id === eachElementList.id);
             if(isFavorite){
                 eachElementList.classList.add('favorites');
-                console.log('entro a if');
+                eachElementList.classList.remove('noFavorites');
             }
         }
 }
@@ -170,18 +185,17 @@ function handleClickRemove(event){
     const indexToRemove = favorites.findIndex(favoriteDrink => favoriteDrink.id === idToRemove);
     favorites.splice(indexToRemove,1);
     renderFavorites();
+    render();
 }
 
 //RESETEAR FAVORITOS:
 
 
+btnResetFav.addEventListener('click', handleClickResetFav);
 
-// const btnReset = document.querySelector('.js-btnReset');
-
-// const handleClickReset = () => {
-//     console.log('reset disparada');
-//     favoritesList.innerHTML = '';
-//     localStorage.removeItem('listFavorites');
-// };
-
-// btnReset.addEventListener('click',handleClickReset);
+function handleClickResetFav() {
+    console.log('reset disparada');
+    favoritesList.innerHTML = '';
+    localStorage.removeItem('listFavorites');
+    render();
+}

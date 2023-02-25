@@ -26,6 +26,12 @@ html{
     margin-left:2rem;
     font-size: 1.8rem;
   }
+  &__form__label--btnReset{
+    width: 9rem;
+    height: 3.5rem;
+    margin-left:2rem;
+    font-size: 1.8rem;
+  }
 }
 
 .img{
@@ -67,17 +73,35 @@ html{
       padding-bottom: 1.5rem;
       text-transform: uppercase;
       border-bottom: 1px solid white;
+      &--titleElement {
+          max-width: 150px;
+          font-size: 1.5rem;
+          padding-bottom: 1.2rem;
+        }
+      &--listElement {
+        float: left;
+          padding: 2rem 4rem;
+          width: fit-content;
+          border: 1px solid grey;
+          border-radius: 3px;
+          margin: 1rem;
+      
+          list-style: none;
+          font-weight: lighter;
+        }
     }
+
 }
 
 
 .sectionList__title--listElement{
+  float: left;
   padding: 2rem 4rem;
   width: fit-content;
   border: 1px solid grey;
   border-radius: 3px;
   margin: 1rem;
-  // background-color: rgb(36, 36, 36);
+
   list-style: none;
   font-weight: lighter;
 }
@@ -86,4 +110,8 @@ html{
   max-width: 150px;
   font-size: 1.5rem;
   padding-bottom: 1.2rem;
+}
+
+.noFavorites{
+  background-color: rgb(36, 36, 36);
 }
