@@ -28,10 +28,11 @@ fetch(serverUrl)
             id: drink.idDrink,
         }));
         render(cocktailData);
-            const favoritesLocalStorage = JSON.parse(localStorage.getItem('listFavorites'));
-    if(favoritesLocalStorage.length>0){
-        favorites = favoritesLocalStorage;
-        renderFavoritesItems(favorites);
+
+        const favoritesLocalStorage = JSON.parse(localStorage.getItem('listFavorites'));
+        if(favoritesLocalStorage.length>0){
+            favorites = favoritesLocalStorage;
+             renderFavorites(favorites);
     }
     }
 });
@@ -40,23 +41,27 @@ fetch(serverUrl)
 function render(){
     listSearch.innerHTML = '';
     for (const cocktail of cocktailData ){
+
         const liElement = document.createElement('li');
         const titleElement = document.createElement('h3');
         const imgElement = document.createElement('img');
 
         listSearch.appendChild(liElement);
         liElement.appendChild(titleElement);
-        titleElement.appendChild(imgElement);
+        liElement.appendChild(imgElement);
 
         imgElement.setAttribute('src', cocktail.img);
         imgElement.setAttribute('class','img');
-        liElement.setAttribute('class','js-liElement');
+        liElement.setAttribute('class','sectionList__title--listElement js-liElement');
+        titleElement.setAttribute('class','sectionList__title--titleElement');
         liElement.setAttribute('id',cocktail.id);
 
         const title = document.createTextNode(cocktail.name);
         titleElement.appendChild(title);
+
     }
     addEventClickList(cocktailData);
+    isItFavorite();
 }
 
 //FUNCIÓN DE BÚSQUEDA
@@ -97,7 +102,7 @@ function addEventClickList (){
 function handleClickFavorites(event){
     const idSelected = event.currentTarget.id;
     event.currentTarget.classList.toggle('favorites');
-    const selectedFavorites = cocktailData.find (cocktail => cocktail.id === idSelected); //busca el id que acabamos de seleccionar en la list de cockteles impresa y nos devuelve el objeto con el mismo id.
+    const selectedFavorites = cocktailData.find (cocktail => cocktail.id === idSelected);
     console.log(selectedFavorites);
     const indexFav = favorites.findIndex (cocktail => cocktail.id === idSelected);
     console.log(indexFav);
@@ -106,43 +111,77 @@ function handleClickFavorites(event){
     }else{
         favorites.splice(indexFav,1);
     }
-
-    handleFavorites(favorites);
+    renderFavorites();
 }
 
-
-function handleFavorites(){
+function renderFavorites(){
     favoritesList.innerHTML = '';
-    renderFavoritesItems(favorites);
-    localStorage.setItem ('listFavorites', JSON.stringify(favorites));
-    addEventClickFavorites(favorites);
-;
-}
-
-function renderFavoritesItems(){
     for (const eachfavorite of favorites){
         const liElement = document.createElement('li');
         const titleElement = document.createElement('h3');
         const imgElement = document.createElement('img');
+        const removeElement = document.createElement('div');
 
         favoritesList.appendChild(liElement);
         liElement.appendChild(titleElement);
-        titleElement.appendChild(imgElement);
+        liElement.appendChild(imgElement);
+        liElement.appendChild(removeElement);
 
         imgElement.setAttribute('src', eachfavorite.img);
         imgElement.setAttribute('class','img');
         liElement.setAttribute('class','js-listFav');
         liElement.setAttribute('id', eachfavorite.id);
+        removeElement.setAttribute('class','js-remove');
+        removeElement.setAttribute('id',eachfavorite.id);
 
         const title = document.createTextNode(eachfavorite.name);
+        const remove = document.createTextNode('X');
+        removeElement.appendChild(remove);
         titleElement.appendChild(title);
+    }
+
+    localStorage.setItem ('listFavorites', JSON.stringify(favorites));
+    addEventClickFavorites();
+    isItFavorite();
+}
+
+function isItFavorite () {
+    const liElementList = document.querySelectorAll('.js-liElement');
+    for(const eachElementList of liElementList){
+        const isFavorite = favorites.find (favorite => favorite.id === eachElementList.id);
+            if(isFavorite){
+                eachElementList.classList.add('favorites');
+                console.log('entro a if');
+            }
+        }
+}
+
+
+//BONUS: BORRAR DE FAVORITOS
+function addEventClickFavorites(){
+    const removeContainer = document.querySelectorAll('.js-remove');
+    for (const eachRemoveItem of removeContainer){
+        eachRemoveItem.addEventListener('click',handleClickRemove);
     }
 }
 
-//BONUS: BORRAR DE FAVORITOS
-// function addEventClickFavorites(){
-//     const favoriteLi = document.querySelectorAll('.js-listFav');
-//     for (const eachfavoriteItem of favoriteLi){
-//         eachfavoriteItem.addEventListener('click',handleClickRemove());
-//     }
-// }
+function handleClickRemove(event){
+    const idToRemove = event.currentTarget.id;
+    const indexToRemove = favorites.findIndex(favoriteDrink => favoriteDrink.id === idToRemove);
+    favorites.splice(indexToRemove,1);
+    renderFavorites();
+}
+
+//RESETEAR FAVORITOS:
+
+
+
+// const btnReset = document.querySelector('.js-btnReset');
+
+// const handleClickReset = () => {
+//     console.log('reset disparada');
+//     favoritesList.innerHTML = '';
+//     localStorage.removeItem('listFavorites');
+// };
+
+// btnReset.addEventListener('click',handleClickReset);

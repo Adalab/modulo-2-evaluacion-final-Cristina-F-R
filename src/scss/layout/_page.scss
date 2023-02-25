@@ -1,26 +1,89 @@
-body {
-  padding: 2rem;
-  height: 100vh;
-  background-color: $color-bg;
-  font-family: $font-main;
+html{
+  font-size: 62.5%;
+  font-family: 'Rubik', sans-serif;
+}
+
+.header{
+  padding: 2%;
+  height: 30vh;
+  color:white;
+  background-image: url(../images/pexels_cocktail_original.jpg);
+  background-size: 100%;
+
+  &__title{
+    font-size: 8rem;
+    padding-bottom: 3.5rem;
+  }
+  &__form__label--input{
+    width: 50rem;
+    height: 3.5rem;
+    padding-left: 1rem;
+    font-size: 1.8rem;
+  }
+  &__form__label--btnSearch{
+    width: 9rem;
+    height: 3.5rem;
+    margin-left:2rem;
+    font-size: 1.8rem;
+  }
 }
 
 .img{
-  width:200px;
+  width: 150px;
+  border-radius: 3px;
 }
 
 .favorites{
-  background-color: black;
+  background-color: rgb(218, 218, 218);
+  color:black;
+}
+
+.main{
+  display: flex;
+  background-color: rgb(22, 21, 23);
+  justify-content: space-between;
+}
+
+.sectionList{
+  width: 60vw;
+  padding: 4rem;
   color:white;
+
+  &__title{
+    font-size: 2rem;
+    padding-bottom: 1.5rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid white;
+  }
 }
 
-.SectionList{
-  width: 40vw;
-  background-color: brown;
+.sectionFav{
+  padding: 4rem;
+  width: 30vw;
+  color: white;
+  background-color: rgb(57, 57, 56);
+  &__title {
+      font-size: 2rem;
+      padding-bottom: 1.5rem;
+      text-transform: uppercase;
+      border-bottom: 1px solid white;
+    }
 }
 
-.SectionFav{
-  width: 40vw;
-  background-color: aqua;
+
+.sectionList__title--listElement{
+  padding: 2rem 4rem;
+  width: fit-content;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin: 1rem;
+  // background-color: rgb(36, 36, 36);
+  list-style: none;
+  font-weight: lighter;
 }
 
+.sectionList__title--titleElement{
+  max-width: 150px;
+  font-size: 1.5rem;
+  padding-bottom: 1.2rem;
+}
