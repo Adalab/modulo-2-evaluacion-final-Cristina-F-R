@@ -61,7 +61,7 @@ function renderAll(ListElements){
         liElement.appendChild(removeElement);
 
         imgElement.setAttribute('src', eachElement.img);
-        imgElement.setAttribute('class','img');
+        imgElement.setAttribute('class','card_img');
         titleElement.setAttribute('class','card_title');
         liElement.setAttribute('id', eachElement.id);
 
@@ -71,7 +71,7 @@ function renderAll(ListElements){
         if(ListElements === favorites){
             favoritesList.appendChild(liElement);
             liElement.setAttribute('class','card noFavorites js-listFav');
-            removeElement.setAttribute('class','remove js-remove');
+            removeElement.setAttribute('class','card_remove js-remove');
             removeElement.setAttribute('id',eachElement.id);
             const remove = document.createTextNode('X');
             removeElement.appendChild(remove);

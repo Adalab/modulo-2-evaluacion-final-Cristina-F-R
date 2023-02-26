@@ -3,46 +3,29 @@ html{
   font-family: 'Rubik', sans-serif;
 }
 
-
-.favorites{
-  background-color: rgb(218, 218, 218);
-  color:black;
-}
-
-.noFavorites {
-  background-color: rgb(36, 36, 36);
-}
-
 .main{
   display: flex;
   background-color: rgb(22, 21, 23);
   justify-content: space-between;
   min-height: calc(100vh - 30vh - 8vh);
+  color: $color-font;
+
+  &_sectionList {
+      width: 60vw;
+      padding: 4rem;
+    }
+  
+    &_sectionFav {
+      padding: 4rem;
+      width: 30vw;
+      background-color: rgb(57, 57, 56);
+    }
 }
 
-.sectionList{
-  width: 60vw;
-  padding: 4rem;
-  color:white;
-}
-
-.sectionFav{
-  padding: 4rem;
-  width: 30vw;
-  color: white;
-  background-color: rgb(57, 57, 56);
-}
-
-.title {
-  font-size: 2rem;
-  padding-bottom: 1.5rem;
-  text-transform: uppercase;
-  border-bottom: 1px solid white;
-
-}
 .listContainer{
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 2rem;
 }
 
 .card{
@@ -56,46 +39,44 @@ html{
   text-align: center;
   list-style: none;
   display: grid;
-  grid-template-columns: 5fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 5fr 1fr;
+  position: relative;
+
+  &_title {
+      max-width: 150px;
+      font-size: $font-sizeS;
+      padding-bottom: 1.2rem;
+      grid-column: 1/3;
+    }
+  
+  &_img {
+    width: 150px;
+    border-radius: 3px;
+    columns: 1/2;
+  }
+
+  &_remove {
+    float: right;
+    border-radius: 50%;
+    background-color: $color-black;
+    width: fit-content;
+    height: fit-content;
+    padding: 1rem 1.2rem;
+    font-weight: bold;
+    font-size: $font-sizeS;
+    grid-column: 2/3;
+    position: absolute;
+    transform: translate(50%, 15%);
+  }
 
 }
 
-
-.card_title{
-  max-width: 150px;
-  font-size: 1.5rem;
-  padding-bottom: 1.2rem;
-  grid-column: 1/3;
+.favorites {
+  background-color: $color-favorites;
+  color: $color-black;
 }
 
-.img {
-  width: 150px;
-  border-radius: 3px;
-  columns: 1/2;
+.noFavorites {
+  background-color: $color-nofavorites;
 }
-
-.remove {
-  float: right;
-  border-radius: 50%;
-  background-color: black;
-  width: fit-content;
-  height: fit-content;
-  padding: 1rem 1.2rem;
-  font-weight: bold;
-  font-size: 1.5rem;
-  grid-column: 2/3;
-  margin-left: 1rem;
-  margin-top: 50px;
-}
-
-.btnReset{
-  margin-left:10%;
-  margin-right: 10%;
-  width:80%;
-  height: 3.5rem;
-  margin-left: 2rem;
-  font-size: 1.8rem;
-  display: block;
-}
-
