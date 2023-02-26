@@ -12,7 +12,7 @@ const btnReset = document.querySelector('.js-btnReset');
 let favorites = [];
 let cocktailData = [];
 
-//CARGA LISTADO DE MARGARITAS POR DEFECTO
+//CHARGE DEAULT MARGARITA LIST:
 fetchInicio();
 
 function fetchInicio(){
@@ -26,50 +26,69 @@ function fetchInicio(){
                 img: noImgUrl,
                 id: drink.idDrink,
             }));
-            render(cocktailData);
+            renderAll(cocktailData);
             }else{cocktailData = data.drinks.map((drink) => ({
                 name: drink.strDrink,
                 img: drink.strDrinkThumb,
                 id: drink.idDrink,
             }));
-            render(cocktailData);
+            renderAll(cocktailData);
 
             const favoritesLocalStorage = JSON.parse(localStorage.getItem('listFavorites'));
             if(favoritesLocalStorage.length>0){
                 favorites = favoritesLocalStorage;
-                renderFavorites(favorites);
-        }
+                renderAll(favorites);
+            }
         }
     });
 }
-//RENDERIZADO DEL LISTADO PRINCIPAL DE BEBIDAS
-function render(){
-    listSearch.innerHTML = '';
-    for (const cocktail of cocktailData ){
 
+//RENDER CARDS AND LISTS:
+function renderAll(ListElements){
+    if(ListElements === favorites){
+         favoritesList.innerHTML = '';
+    }else{
+        listSearch.innerHTML = '';
+        }
+    for (const eachElement of ListElements){
         const liElement = document.createElement('li');
         const titleElement = document.createElement('h3');
         const imgElement = document.createElement('img');
+        const removeElement = document.createElement('div');
 
-        listSearch.appendChild(liElement);
         liElement.appendChild(titleElement);
         liElement.appendChild(imgElement);
+        liElement.appendChild(removeElement);
 
-        imgElement.setAttribute('src', cocktail.img);
+        imgElement.setAttribute('src', eachElement.img);
         imgElement.setAttribute('class','img');
-        liElement.setAttribute('class','card noFavorites js-liElement');
         titleElement.setAttribute('class','card_title');
-        liElement.setAttribute('id',cocktail.id);
+        liElement.setAttribute('id', eachElement.id);
 
-        const title = document.createTextNode(cocktail.name);
+        const title = document.createTextNode(eachElement.name);
         titleElement.appendChild(title);
 
+        if(ListElements === favorites){
+            favoritesList.appendChild(liElement);
+            liElement.setAttribute('class','card noFavorites js-listFav');
+            removeElement.setAttribute('class','js-remove');
+            removeElement.setAttribute('id',eachElement.id);
+            const remove = document.createTextNode('X');
+            removeElement.appendChild(remove);
+        }else{
+            listSearch.appendChild(liElement);
+            liElement.setAttribute('class','card noFavorites js-liElement');
+        }
+    }
+     if(ListElements === favorites){
+        localStorage.setItem ('listFavorites', JSON.stringify(favorites));
     }
     addEventClickList(cocktailData);
+    addEventClickFavorites();
     isItFavorite();
 }
 
-//FUNCIÓN DE BÚSQUEDA
+//SEARCH:
 function handleclick (event) {
      event.preventDefault();
     let inputValue = inputSearch.value;
@@ -82,19 +101,19 @@ function handleclick (event) {
             img: noImgUrl,
             id: drink.idDrink,
         }));
-        render(cocktailData);
+        renderAll(cocktailData);
         }else{cocktailData = data.drinks.map((drink) => ({
             name: drink.strDrink,
             img: drink.strDrinkThumb,
             id: drink.idDrink,
         }));
-        render(cocktailData);}
+        renderAll(cocktailData);}
     });
 }
 
 btnSearch.addEventListener('click', handleclick);
 
-//BOTÓN RESET BÚSCADOR:
+//RESET BUTTON HEADER:
 btnReset.addEventListener('click', handleclickReset);
 
 function handleclickReset(event){
@@ -104,8 +123,7 @@ function handleclickReset(event){
 }
 
 
-//FAVORITOS
-
+//ADD FAVORITES WITH CLICK:
 function addEventClickList (){
     const liElementList = document.querySelectorAll('.js-liElement');
     for (const eachLiElement of liElementList){
@@ -116,50 +134,18 @@ function addEventClickList (){
 function handleClickFavorites(event){
     const idSelected = event.currentTarget.id;
     event.currentTarget.classList.toggle('favorites');
+    event.currentTarget.classList.toggle('noFavorites');
     const selectedFavorites = cocktailData.find (cocktail => cocktail.id === idSelected);
-    console.log(selectedFavorites);
     const indexFav = favorites.findIndex (cocktail => cocktail.id === idSelected);
-    console.log(indexFav);
     if (indexFav === -1){
         favorites.push(selectedFavorites);
     }else{
         favorites.splice(indexFav,1);
     }
-    renderFavorites();
+    renderAll(favorites);
 }
 
-function renderFavorites(){
-    favoritesList.innerHTML = '';
-    for (const eachfavorite of favorites){
-        const liElement = document.createElement('li');
-        const titleElement = document.createElement('h3');
-        const imgElement = document.createElement('img');
-        const removeElement = document.createElement('div');
-
-        favoritesList.appendChild(liElement);
-        liElement.appendChild(titleElement);
-        liElement.appendChild(imgElement);
-        liElement.appendChild(removeElement);
-
-        imgElement.setAttribute('src', eachfavorite.img);
-        imgElement.setAttribute('class','img');
-        liElement.setAttribute('class','card noFavorites js-listFav');
-        titleElement.setAttribute('class','card_title');
-        liElement.setAttribute('id', eachfavorite.id);
-        removeElement.setAttribute('class','js-remove');
-        removeElement.setAttribute('id',eachfavorite.id);
-
-        const title = document.createTextNode(eachfavorite.name);
-        const remove = document.createTextNode('X');
-        removeElement.appendChild(remove);
-        titleElement.appendChild(title);
-    }
-
-    localStorage.setItem ('listFavorites', JSON.stringify(favorites));
-    addEventClickFavorites();
-    isItFavorite();
-}
-
+//BONUS: MANTAIN AVORITES CLASS:
 function isItFavorite () {
     const liElementList = document.querySelectorAll('.js-liElement');
     for(const eachElementList of liElementList){
@@ -168,11 +154,10 @@ function isItFavorite () {
                 eachElementList.classList.add('favorites');
                 eachElementList.classList.remove('noFavorites');
             }
-        }
-}
+         }
+    }
 
-
-//BONUS: BORRAR DE FAVORITOS
+//BONUS: DELETE FAVORITES WITH X:
 function addEventClickFavorites(){
     const removeContainer = document.querySelectorAll('.js-remove');
     for (const eachRemoveItem of removeContainer){
@@ -184,17 +169,15 @@ function handleClickRemove(event){
     const idToRemove = event.currentTarget.id;
     const indexToRemove = favorites.findIndex(favoriteDrink => favoriteDrink.id === idToRemove);
     favorites.splice(indexToRemove,1);
-    renderFavorites();
-    render();
+    renderAll(cocktailData);
+    renderAll(favorites);
 }
 
-//RESETEAR FAVORITOS:
-
+//RESET FAVORITES BUTTON:
 btnResetFav.addEventListener('click', handleClickResetFav);
 
 function handleClickResetFav() {
-    console.log('reset disparada');
     favoritesList.innerHTML = '';
     localStorage.removeItem('listFavorites');
-    render();
+    renderAll(favorites);
 }
