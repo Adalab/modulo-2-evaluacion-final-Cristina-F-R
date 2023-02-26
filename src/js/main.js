@@ -7,7 +7,7 @@ const favoritesList = document.querySelector('.js-listFav');
 const listSearch = document.querySelector('.js-listElement');
 const inputSearch = document.querySelector('.js-inputSearch');
 const btnSearch = document.querySelector('.js-btnSearch');
-const btnResetFav = document.querySelector('.js-resetFav');
+// const btnResetFav = document.querySelector('.js-resetFav');
 const btnReset = document.querySelector('.js-btnReset');
 let favorites = [];
 let cocktailData = [];
@@ -71,7 +71,7 @@ function renderAll(ListElements){
         if(ListElements === favorites){
             favoritesList.appendChild(liElement);
             liElement.setAttribute('class','card noFavorites js-listFav');
-            removeElement.setAttribute('class','js-remove');
+            removeElement.setAttribute('class','remove js-remove');
             removeElement.setAttribute('id',eachElement.id);
             const remove = document.createTextNode('X');
             removeElement.appendChild(remove);
@@ -174,10 +174,11 @@ function handleClickRemove(event){
 }
 
 //RESET FAVORITES BUTTON:
+const btnResetFav = document.querySelector ('.js-btnResetFav');
 btnResetFav.addEventListener('click', handleClickResetFav);
 
 function handleClickResetFav() {
     favoritesList.innerHTML = '';
     localStorage.removeItem('listFavorites');
-    renderAll(favorites);
+    renderAll(cocktailData);
 }
