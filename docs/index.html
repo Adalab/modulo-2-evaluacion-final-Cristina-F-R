@@ -23,8 +23,8 @@
           <label for="search" class="header__form__label">
             <input type="text" class="header__form__label--input js-inputSearch" placeholder="Escribe aquí tu búsqueda" id="search">
           </label>
-          <input type="submit" value="Buscar" class="header__form__label--btnSearch js-btnSearch">
-          <button class="header__form__label--btnSearch js-btnReset">Reset</button>
+          <input type="submit" value="Buscar" class="btn js-btnSearch">
+          <button class="btn js-btnReset">Reset</button>
           
         </form>
 
@@ -32,19 +32,20 @@
 
       <main class="main">
         <section class="sectionFav">
-          <h2 class="sectionList__title">Tus favoritos:</h2>
+          <h2 class="title">Tus favoritos:</h2>
 
-          <ul class="js-listFav">
+          <ul class="listContainer js-listFav">
 
           </ul>
-          <button class="js-btnReset">Resetear Favoritos</button>
-
+          
+          <button class="btn js-btnReset">Resetear Favoritos</button>
+          
         </section>
 
         <section class="sectionList">
-          <h2 class="sectionList__title">Resultados de tu búsqueda:</h2>
+          <h2 class="listSearch title">Resultados de tu búsqueda:</h2>
 
-          <ul class="js-listElement">
+          <ul class="listContainer js-listElement">
 
           </ul>
         </section>
@@ -54,7 +55,9 @@
       </main>
 
       <footer class="footer">
-       
+          <div> <p class="footer_p">Búscador de cócteles 2023</p></div>
+          <div> <p class="footer_name">Cristina Faixedas Roca</p>
+           <p class="footer_adalab">Módulo 2 - Evaluación final. Promoción Margarita Salas, Adalab </p></div>
       </footer>
 
     </div>
