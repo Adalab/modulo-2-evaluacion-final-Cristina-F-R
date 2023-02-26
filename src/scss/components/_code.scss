@@ -1,9 +1,9 @@
-// estilos para las etiquetas <code>
-// más info sobre la etiqueta code https://developer.mozilla.org/es/docs/Web/HTML/Elemento/code
 
-    .header__form__label--btnSearch {
-      width: 9rem;
-      height: 3.5rem;
-      margin-left: 2rem;
-      font-size: 1.8rem;
-    }
+.btn {
+  width: max-content;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  height: 3.5rem;
+  margin-left: 2rem;
+  font-size: 1.8rem;
+}

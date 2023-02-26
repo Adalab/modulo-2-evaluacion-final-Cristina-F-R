@@ -57,8 +57,8 @@ function render(){
 
         imgElement.setAttribute('src', cocktail.img);
         imgElement.setAttribute('class','img');
-        liElement.setAttribute('class','sectionList__title--listElement noFavorites js-liElement');
-        titleElement.setAttribute('class','sectionList__title--titleElement');
+        liElement.setAttribute('class','card noFavorites js-liElement');
+        titleElement.setAttribute('class','card_title');
         liElement.setAttribute('id',cocktail.id);
 
         const title = document.createTextNode(cocktail.name);
@@ -143,8 +143,8 @@ function renderFavorites(){
 
         imgElement.setAttribute('src', eachfavorite.img);
         imgElement.setAttribute('class','img');
-        liElement.setAttribute('class','sectionFav__title--listElement js-listFav');
-        titleElement.setAttribute('class','sectionList__title--titleElement');
+        liElement.setAttribute('class','card noFavorites js-listFav');
+        titleElement.setAttribute('class','card_title');
         liElement.setAttribute('id', eachfavorite.id);
         removeElement.setAttribute('class','js-remove');
         removeElement.setAttribute('id',eachfavorite.id);
@@ -189,7 +189,6 @@ function handleClickRemove(event){
 }
 
 //RESETEAR FAVORITOS:
-
 
 btnResetFav.addEventListener('click', handleClickResetFav);
 
