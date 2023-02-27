@@ -114,7 +114,7 @@ function handleclick (event) {
 
 btnSearch.addEventListener('click', handleclick);
 
-//RESET BUTTON HEADER:
+//SEARCH BUTTON RESET:
 btnReset.addEventListener('click', handleclickReset);
 
 function handleclickReset(event){
@@ -146,7 +146,7 @@ function handleClickFavorites(event){
     renderAll(favorites);
 }
 
-//BONUS: MANTAIN AVORITES CLASS:
+//BONUS: MANTAIN FAVORITES CLASS:
 function isItFavorite () {
     const liElementList = document.querySelectorAll('.js-liElement');
     for(const eachElementList of liElementList){

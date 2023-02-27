@@ -4,8 +4,7 @@
 
 ## objetivo y funcionalidades 
 
-Se trata de una aplicación web que contiene con un buscador de cócteles conectado a una API que contiene un listado de las bebidas y cócteles de todo el mundo. La web nos permite realizar una búsqueda a dicha API con la palabra que nos interese, renderizar el resultado en pantalla y guardar, mediante un click, los cócteles que interesen al usuario/a en una lista de favoritos, también permite desmarcarlos o resetear la lista de favoritos cuando nos interese. El búscador da por defecto al cargar la página el listado de margaritas y contiene también la función de resetear la búsqueda con un botón. La lista de cócteles favoritos se guarda en el LocalStorage para que al recargar la página no se peirda la información. 
-
+Se trata de una aplicación web que contiene con un buscador de cócteles conectado a una API que contiene un listado de las bebidas y cócteles de todo el mundo. La web nos permite realizar una búsqueda a dicha API con la palabra que nos interese, renderizar el resultado en pantalla y guardar, mediante un click, los cócteles que interesen al usuario/a en una lista de favoritos, también permite desmarcarlos y resetar la lista de favoritos, así como resetear la búsqueda.. El búscador da por defecto al cargar la página el listado de margaritas y tiene un botón que permite resetear la búsqueda contiene también la función de resetear la búsqueda con un botón, borrando el campo del Inpt y devolviendo a la búsqueda por defectos de margaritas. La lista de cócteles favoritos se guarda en el LocalStorage para que al recargar la página no se peirda la información, ésta lista se puede eliminar borrando cócktel a cocktel con el botón X o bien usando el botónd de Resetear todos los favoritos que se encuentra bajo la lista de favoritos.
 
 ## tecnologías aplicadas
 

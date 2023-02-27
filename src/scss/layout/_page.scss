@@ -19,7 +19,16 @@ html{
     padding: 2rem;
     width: 50vw;
     background-color: rgb(57, 57, 56);
+
+    &_resetContainer {
+        width: 100%;
+        display: flex;
+        padding-top: 0.8rem;
+        padding-bottom: 0.2rem;
+        justify-content: center;
+      }
   }
+  
 }
 
 .listContainer {
@@ -83,7 +92,13 @@ html{
     &_sectionFav {
       padding: 3rem;
       width: 50vw;
+
+        &_resetContainer {
+            padding-top: 1rem;
+            padding-bottom: 0.5rem;
+          }
     }
+
   }
 
   .listContainer {
@@ -128,7 +143,12 @@ html{
     
       &_sectionFav {
         padding: 4rem;
-        width: 30vw;
+        width: 40vw;
+
+        &_resetContainer {
+            padding-top: 1.5rem;
+            padding-bottom: 0.5rem;
+          }
       }
   }
 
