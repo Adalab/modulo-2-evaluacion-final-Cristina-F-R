@@ -13,42 +13,22 @@ Este proyecto se ha programado con JavaScript, y maquetado usando CSS y HTML.
 Se ha desarrollado con la aydua del Adalaber Web Starter Kit (instruccioens de uso y para arrancar el proyecto más abajo), que lleva incorporado la herramienta para la compilación de transmissión Gulp y el lenguaje de hoja de esilos en cascada Sass. 
 
 
-## Guía de uso de Adalab Starter Kit
+## Pasos para arrancar el proyecto:
 
-Ahoy! Este es nuestro Starter Kit creado en **node y gulp**. ¿Y qué es un Starter kit? Pues es una **plantilla de proyecto con funcionalidades preinstaladas y preconfiguradas**.
+### Desde gitHub Pages:
 
-Este Kit incluye un motor de plantillas HTML, el preprocesador SASS y un servidor local y muchas cosas más. El Kit nos ayuda a trabajar más cómodamente, nos automatiza tareas.
+Si quieres visitar la web desde el navegdor puedes abrir el enlace de GitHUb pages que hay en el repositiorio del proyecto. Esto abirirá la web normalmente en el navegador y podrás probar sus funcionalidades.
 
-En el Kit hay 3 tipos de ficheros y carpetas:
+### Si has clonado o descargado el proeycto:
 
-- Los ficheros que están sueltos en la raíz del repositorio, como gulpfile.js, package.json... Son la configuración del proyecto y no necesitamos modificarlos.
-- La carpeta `src/`: son los ficheros de nuestra página web, como HTML, CSS, JS...
-- Las carpetas `public/` y `docs/`, que son generadas automáticamente cuando arrancamos el proyecto. El Kit lee los ficheros que hay dentro de `src/`, los procesa y los genera dentro de `public/` y `docs/`.
+Si has clonado el repositorio, abr ela temrinal y ecribe el comando 
 
-> **NOTA:** Necesitas tener instalado [Node JS](https://nodejs.org/) para trabajar con este Starter Kit:
+npm i
 
-### Pasos a seguir cada vez que queremos arrancar un proyecto desde cero:
+Para arrancar el proyecto y que se abra en el navegador ejecuta el comando:
 
-1. **Crea tu propio repositorio.**
-1. Descarga este **Starter kit desde GitHub**.
-   - No recomendamos que clones este repo ya que no podrás añadir commits.
-1. **Copia todos los ficheros** de este Starter kit en la carpeta raíz de tu repositorio.
-   - Recuerda que debes copiar **también los ficheros ocultos**.
-   - Si has decidido clonar este repo, no debes copiar la carpeta `.git`. Si lo haces estarás machacando tu propio repositorio.
-1. **Abre una terminal** en la carpeta raíz de tu repositorio.
-1. **Instala las dependencias** locales ejecutando en la terminal el comando:
-
-```bash
-npm install
-```
-
-### Pasos para arrancar el proyecto:
-
-Una vez hemos instalado las dependencias, vamos a arrancar el proyecto. **El proyecto hay que arrancarlo cada vez que te pongas a programar.** Para ello ejecuta el comando:
-
-```bash
 npm start
-```
+
 
 Este comando:
 
