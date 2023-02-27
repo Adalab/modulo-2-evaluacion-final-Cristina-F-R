@@ -5,10 +5,48 @@ html {
 
 .header {
   padding: 2%;
-  height: 30vh;
+  height: 20vh;
   color: $color-font;
-  background-image: url(../images/pexels_cocktail_original.jpg);
+  background-image: url(../images/pexels_cocktail_p.jpg);
   background-size: 100%;
+
+  &__title {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.86);
+    padding-bottom: 1.5rem;
+  }
+
+  &__form__label--input {
+    width: 50%;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+    font-size: $font-sizeXS;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    height: 30vh;
+    background-image: url(../images/pexels_cocktail_m.jpg);
+
+    &__title {
+      font-size: 4rem;
+      padding-bottom: 3.5rem;
+    }
+
+    &__form__label--input {
+      width: 50rem;
+      height: 2.5rem;
+      font-size: $font-sizeS;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+.header {
+  padding: 2%;
+  height: 30vh;
+  background-image: url(../images/pexels_cocktail_original.jpg);
 
   &__title {
     font-size: 8rem;
@@ -19,7 +57,8 @@ html {
     width: 50rem;
     height: 3.5rem;
     padding-left: 1rem;
-    font-size: $font-sizeM;
+    font-size: $font-sizeL;
   }
+}
 }
 

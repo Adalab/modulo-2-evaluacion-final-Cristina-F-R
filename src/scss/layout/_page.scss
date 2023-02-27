@@ -3,39 +3,39 @@ html{
   font-family: 'Rubik', sans-serif;
 }
 
-.main{
+.main {
   display: flex;
   background-color: rgb(22, 21, 23);
   justify-content: space-between;
-  min-height: calc(100vh - 30vh - 8vh);
+  min-height: calc(100vh - 20vh - 8vh);
   color: $color-font;
 
   &_sectionList {
-      width: 60vw;
-      padding: 4rem;
-    }
-  
-    &_sectionFav {
-      padding: 4rem;
-      width: 30vw;
-      background-color: rgb(57, 57, 56);
-    }
+    width: 50vw;
+    padding: 2rem;
+  }
+
+  &_sectionFav {
+    padding: 2rem;
+    width: 50vw;
+    background-color: rgb(57, 57, 56);
+  }
 }
 
-.listContainer{
+.listContainer {
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
-.card{
-  padding: 2rem 4rem;
+.card {
+  padding: 1rem 2rem;
   width: fit-content;
   border: 1px solid grey;
   border-radius: 3px;
-  margin: 1rem;
-  width: 25rem;
-  height: 25rem;
+  margin: 0.5rem;
+  width: 12rem;
+  height: 15rem;
   text-align: center;
   list-style: none;
   display: grid;
@@ -44,14 +44,14 @@ html{
   position: relative;
 
   &_title {
-      max-width: 150px;
-      font-size: $font-sizeS;
-      padding-bottom: 1.2rem;
-      grid-column: 1/3;
-    }
-  
+    max-width: 75px;
+    font-size: $font-sizeXS;
+    padding-bottom: 0.8rem;
+    grid-column: 1/3;
+  }
+
   &_img {
-    width: 150px;
+    width: 75px;
     border-radius: 3px;
     columns: 1/2;
   }
@@ -62,14 +62,103 @@ html{
     background-color: $color-black;
     width: fit-content;
     height: fit-content;
-    padding: 1rem 1.2rem;
+    padding: 0.4rem 0.7rem;
     font-weight: bold;
-    font-size: $font-sizeS;
+    font-size: $font-sizeXS;
     grid-column: 2/3;
     position: absolute;
-    transform: translate(50%, 15%);
+    transform: translate(10%, 15%);
   }
 
+}
+@media (min-width: 768px) {
+
+.main {
+
+    &_sectionList {
+      width: 50vw;
+      padding: 3rem;
+    }
+
+    &_sectionFav {
+      padding: 3rem;
+      width: 50vw;
+    }
+  }
+
+  .listContainer {
+    padding-bottom: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem 3rem;
+    margin: 0.8rem;
+    width: 18rem;
+    height: 20rem;
+
+    &_title {
+      max-width: 150px;
+      font-size: $font-sizeS;
+      padding-bottom: 1.2rem;
+    }
+
+    &_img {
+      width: 100px;
+    }
+
+    &_remove {
+      padding: 0.5rem 0.8rem;
+      font-size: $font-sizeS;
+      transform: translate(75%, 15%);
+    }
+
+  }
+
+}
+
+
+@media (min-width: 1024px) {
+  .main{
+    min-height: calc(100vh - 30vh - 8vh);
+
+    &_sectionList {
+        width: 60vw;
+        padding: 4rem;
+      }
+    
+      &_sectionFav {
+        padding: 4rem;
+        width: 30vw;
+      }
+  }
+
+  .listContainer{
+    padding-bottom: 2rem;
+  }
+
+  .card{
+    padding: 2rem 4rem;
+    margin: 1rem;
+    width: 25rem;
+    height: 25rem;
+
+    &_title {
+        max-width: 150px;
+        font-size: $font-sizeS;
+        padding-bottom: 1.2rem;
+      }
+    
+    &_img {
+      width: 150px;
+    }
+
+    &_remove {
+      padding: 1rem 1.2rem;
+      font-size: $font-sizeS;
+      transform: translate(40%, 25%);
+    }
+
+  }
 }
 
 .favorites {

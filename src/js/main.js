@@ -7,8 +7,8 @@ const favoritesList = document.querySelector('.js-listFav');
 const listSearch = document.querySelector('.js-listElement');
 const inputSearch = document.querySelector('.js-inputSearch');
 const btnSearch = document.querySelector('.js-btnSearch');
-// const btnResetFav = document.querySelector('.js-resetFav');
 const btnReset = document.querySelector('.js-btnReset');
+const btnResetFav = document.querySelector ('.js-btnResetFav');
 let favorites = [];
 let cocktailData = [];
 
@@ -45,6 +45,7 @@ function fetchInicio(){
 
 //RENDER CARDS AND LISTS:
 function renderAll(ListElements){
+    console.log('render');
     if(ListElements === favorites){
          favoritesList.innerHTML = '';
     }else{
@@ -174,11 +175,12 @@ function handleClickRemove(event){
 }
 
 //RESET FAVORITES BUTTON:
-const btnResetFav = document.querySelector ('.js-btnResetFav');
+
 btnResetFav.addEventListener('click', handleClickResetFav);
 
 function handleClickResetFav() {
-    favoritesList.innerHTML = '';
     localStorage.removeItem('listFavorites');
+    favoritesList.innerHTML = '';
+    favorites = [];
     renderAll(cocktailData);
 }

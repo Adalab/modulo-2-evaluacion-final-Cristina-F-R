@@ -1,13 +1,44 @@
-.footer {
-  font-size: $font-sizeS;
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-  background-image: url(../images/pexels_cocktail_original.jpg);
-  background-size: 100%;
-  color:$color-font;
-  height: 8vh;
-  &_p{
-    font-size: $font-sizeM;
+
+  .footer {
+    font-size: $font-sizeXS;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-image: url(../images/pexels_cocktail_p.jpg);
+    background-size: 100%;
+    color: $color-font;
+    height: 8vh;
+
+    &_title {
+      font-size: $font-sizeXS;
+    }
+     
+    &_name{
+      text-align: end;
+    }
+    &_adalab{
+     text-align: end;
+    }
+  }
+
+@media (min-width: 768px) {
+  .footer{
+  background-image: url(../images/pexels_cocktail_m.jpg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    font-size: $font-sizeS;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    background-image: url(../images/pexels_cocktail_original.jpg);
+    background-size: 100%;
+    color:$color-font;
+    height: 8vh;
+    &_title{
+      font-size: $font-sizeS;
+    }
   }
 }
